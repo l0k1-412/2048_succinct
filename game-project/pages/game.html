@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 Game</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,400,800" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #8C016C, #FE11C5);
+    }
+    .container {
+      background: linear-gradient(135deg, #FFC0CB, #FFFFFF, #ADD8E6);
+      color: #222;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 400px;
+      max-width: 90%;
+      border: 2px solid #FF1493;
+      position: relative;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+    .title {
+      font-size: 1.2em;
+      font-weight: bold;
+      text-align: left;
+    }
+    .score {
+      font-weight: 800;
+      font-size: 1.2em;
+      text-align: right;
+    }
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 8px;
+      background: #ffb6c1;
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    .tile {
+      width: 80px;
+      height: 80px;
+      background: #ffc0cb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      border-radius: 10px;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="header-left">
+        <img src="../assets/life.png" alt="Logo" class="logo">
+        <div class="title">2048 <br> Game</div>
+      </div>
+      <div class="score" id="score">Score<br>0</div>
+    </div>
+    <div class="game-board" id="board"></div>
+  </div>
+  
+  <script>
+    const boardSize = 4;
+    let board = Array.from({ length: boardSize }, () => Array(boardSize).fill(0));
+    let score = 0;
+
+    function updateBoard() {
+      const boardElement = document.getElementById("board");
+      boardElement.innerHTML = "";
+      board.flat().forEach(value => {
+        const tile = document.createElement("div");
+        tile.classList.add("tile");
+        tile.textContent = value !== 0 ? value : "";
+        tile.style.background = value ? `rgb(${255 - value * 5}, ${200 - value * 3}, 220)` : "#ffc0cb";
+        boardElement.appendChild(tile);
+      });
+      document.getElementById("score").innerHTML = `Score<br>${score}`;
+    }
+
+    function addRandomTile() {
+      let emptyTiles = [];
+      for (let r = 0; r < boardSize; r++) {
+        for (let c = 0; c < boardSize; c++) {
+          if (board[r][c] === 0) emptyTiles.push({ r, c });
+        }
+      }
+      if (emptyTiles.length > 0) {
+        let { r, c } = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
+        board[r][c] = Math.random() < 0.9 ? 2 : 4;
+      }
+    }
+
+    function slide(row) {
+      let filteredRow = row.filter(num => num);
+      for (let i = 0; i < filteredRow.length - 1; i++) {
+        if (filteredRow[i] === filteredRow[i + 1]) {
+          filteredRow[i] *= 2;
+          score += filteredRow[i];
+          filteredRow.splice(i + 1, 1);
+        }
+      }
+      while (filteredRow.length < boardSize) filteredRow.push(0);
+      return filteredRow;
+    }
+
+    function move(direction) {
+      let newBoard = board.map(row => [...row]);
+      if (direction === "left") newBoard = newBoard.map(slide);
+      if (direction === "right") newBoard = newBoard.map(row => slide(row.reverse()).reverse());
+      if (direction === "up") newBoard = transpose(newBoard).map(slide);
+      if (direction === "down") newBoard = transpose(newBoard).map(row => slide(row.reverse()).reverse());
+      newBoard = direction === "up" || direction === "down" ? transpose(newBoard) : newBoard;
+      if (JSON.stringify(board) !== JSON.stringify(newBoard)) {
+        board = newBoard;
+        addRandomTile();
+        updateBoard();
+        checkGameOver();
+      }
+    }
+
+    function transpose(matrix) {
+      return matrix[0].map((_, i) => matrix.map(row => row[i]));
+    }
+
+    function isGameOver() {
+      return !board.flat().includes(0) && JSON.stringify(board) === JSON.stringify(board.map(row => slide(row)));
+    }
+
+    function checkGameOver() {
+      if (isGameOver()) {
+        localStorage.setItem("finalScore", score); // Store the final score
+        setTimeout(() => {
+          window.location.href = "gameover.html";
+        }, 500);
+      }
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowUp") move("up");
+      if (event.key === "ArrowDown") move("down");
+      if (event.key === "ArrowLeft") move("left");
+      if (event.key === "ArrowRight") move("right");
+    });
+
+    addRandomTile();
+    addRandomTile();
+    updateBoard();
+  </script>
+</body>
+</html>
