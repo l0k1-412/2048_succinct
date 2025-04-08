@@ -6,75 +6,108 @@
   <title>2048 Game</title>
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,400,800" rel="stylesheet">
   <style>
+    /* Style for the whole page */
     body {
-      font-family: 'Nunito', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+      font-family: 'Nunito', sans-serif; /* Use Nunito font */
+      display: flex; /* Use flexbox layout */
+      justify-content: center; /* Center content horizontally */
+      align-items: center; /* Center content vertically */
+      height: 100vh; /* Full height of the screen */
+      margin: 0; /* Remove default margin */
+  
+      /* Background with a diagonal gradient from dark pink (#8C016C) to bright pink (#FE11C5) */
       background: linear-gradient(135deg, #8C016C, #FE11C5);
     }
+  
+    /* Container that holds everything */
     .container {
+      /* Background gradient from light pink (#FFC0CB) to white to light blue (#ADD8E6) */
       background: linear-gradient(135deg, #FFC0CB, #FFFFFF, #ADD8E6);
-      color: #222;
-      padding: 20px;
-      border-radius: 15px;
+      
+      color: #222; /* Dark gray text for readability */
+      padding: 20px; /* Space inside the box */
+      border-radius: 15px; /* Rounded corners */
+      
+      /* Drop shadow to give a 3D effect */
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      width: 400px;
-      max-width: 90%;
-      border: 2px solid #FF1493;
-      position: relative;
+      
+      text-align: center; /* Center the text */
+      width: 400px; /* Fixed width */
+      max-width: 90%; /* Adjust for small screens */
+      
+      border: 2px solid #FF1493; /* Deep pink border */
+      position: relative; /* Needed for absolute positioning inside */
     }
+  
+    /* Header section (contains logo and score) */
     .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
+      display: flex; /* Flex layout for side-by-side elements */
+      justify-content: space-between; /* Put space between left and right sections */
+      align-items: center; /* Center items vertically */
+      padding: 10px; /* Space inside header */
     }
+  
+    /* Left part of header (logo and title) */
     .header-left {
-      display: flex;
-      align-items: center;
+      display: flex; /* Place logo and title in a row */
+      align-items: center; /* Align vertically */
     }
+  
+    /* Logo image */
     .logo {
-      width: 50px;
-      height: 50px;
-      margin-right: 10px;
+      width: 50px; /* Set image width */
+      height: 50px; /* Set image height */
+      margin-right: 10px; /* Space between logo and title */
     }
+  
+    /* Title text next to logo */
     .title {
-      font-size: 1.2em;
-      font-weight: bold;
-      text-align: left;
+      font-size: 1.2em; /* Slightly larger text */
+      font-weight: bold; /* Make the title bold */
+      text-align: left; /* Align to the left */
     }
+  
+    /* Score display on the right side */
     .score {
-      font-weight: 800;
-      font-size: 1.2em;
-      text-align: right;
+      font-weight: 800; /* Very bold text */
+      font-size: 1.2em; /* Slightly larger text */
+      text-align: right; /* Align to the right */
     }
+  
+    /* Game board area (4x4 grid) */
     .game-board {
-      display: grid;
+      display: grid; /* Use CSS Grid */
+      
+      /* Create 4 equal columns and 4 equal rows */
       grid-template-columns: repeat(4, 1fr);
       grid-template-rows: repeat(4, 1fr);
-      gap: 8px;
-      background: #ffb6c1;
-      padding: 10px;
-      border-radius: 10px;
-      margin-top: 20px;
+      
+      gap: 8px; /* Space between tiles */
+      
+      background: #ffb6c1; /* Light pink background for the board */
+      padding: 10px; /* Space around the grid */
+      border-radius: 10px; /* Slightly rounded corners */
+      margin-top: 20px; /* Space above the board */
     }
+  
+    /* Each tile (cell) in the board */
     .tile {
-      width: 80px;
-      height: 80px;
-      background: #ffc0cb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5em;
-      font-weight: bold;
-      border-radius: 10px;
+      width: 80px; /* Set width */
+      height: 80px; /* Set height */
+      background: #ffc0cb; /* Soft pink background for tiles */
+      
+      display: flex; /* Center content inside */
+      align-items: center; /* Center vertically */
+      justify-content: center; /* Center horizontally */
+      
+      font-size: 1.5em; /* Large number text */
+      font-weight: bold; /* Bold number text */
+      border-radius: 10px; /* Rounded corners on tiles */
+  
+      /* Inner shadow for a pressed look */
       box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
     }
-  </style>
+  </style>  
 </head>
 <body>
   <div class="container">

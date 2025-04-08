@@ -7,66 +7,90 @@
   <!-- Đổi font sang Nunito -->
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,400,800" rel="stylesheet">
   <style>
+    /* Style for the whole page */
     body {
-      font-family: 'Nunito', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      /* Giữ nguyên gradient nền nếu bạn muốn */
+      font-family: 'Nunito', sans-serif; /* Use Nunito font from Google Fonts */
+      display: flex; /* Use flexbox to center content */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      height: 100vh; /* Make the page full height of the screen */
+      margin: 0; /* Remove default margin */
+      
+      /* Background with a gradient from purple-pink to bright pink */
       background: linear-gradient(135deg, #8C016C, #FE11C5);
     }
+
+    /* Style for the box that contains the game rules */
     .rules-container {
+      /* Background with a soft pink to white to light blue gradient */
       background: linear-gradient(135deg, #FFC0CB, #FFFFFF, #ADD8E6);
-      color: #222;
-      padding: 30px;
-      border-radius: 15px;
+      
+      color: #222; /* Dark gray text color for readability */
+      padding: 30px; /* Add space inside the box */
+      border-radius: 15px; /* Round the corners of the box */
+      
+      /* Add a shadow around the box to make it look lifted */
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      width: 400px;
-      max-width: 90%;
-      border: 2px solid #FF1493;
-      position: relative;
+      
+      text-align: center; /* Center the text inside */
+      width: 400px; /* Set box width */
+      max-width: 90%; /* Make sure it doesn’t get too big on small screens */
+      
+      border: 2px solid #FF1493; /* Border in Deep Pink */
+      position: relative; /* Needed to position the logo inside this box */
     }
+
+    /* Style for the title "2048 Game Rules" */
     h1 {
-      font-size: 1.8em;
-      color: #222;
-      margin-top: 0;
-      margin-bottom: 20px;
+      font-size: 1.8em; /* Make the text larger */
+      color: #222; /* Dark gray color */
+      margin-top: 0; /* Remove space above the title */
+      margin-bottom: 20px; /* Add space below the title */
     }
+
+    /* Style for the list of rules */
     ul {
-      list-style: none;
-      padding: 0;
-      text-align: left;
-      color: #000;
+      list-style: none; /* Remove default bullet points */
+      padding: 0; /* Remove default padding */
+      text-align: left; /* Align text to the left */
+      color: #000; /* Pure black for best contrast */
     }
+
+    /* Style for each item in the list */
     li {
-      margin: 8px 0;
+      margin: 8px 0; /* Add space between each rule */
     }
-    /* Sửa màu nền nút START GAME sang hồng nhạt, in đậm chữ */
+
+    /* Style for the START GAME button */
     .start-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1em;
-      font-weight: 800; /* in đậm */
-      color: #222;
-      background: #FFC0CB; /* hồng nhạt */
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: 0.3s;
+      display: inline-block; /* Make the button sit inline */
+      margin-top: 20px; /* Add space above the button */
+      padding: 10px 20px; /* Add space inside the button */
+      
+      font-size: 1em; /* Standard text size */
+      font-weight: 800; /* Make the text bold */
+      color: #222; /* Dark gray text for contrast */
+
+      background: #FFC0CB; /* Light pink background (soft and cute look) */
+      border: none; /* Remove default border */
+      border-radius: 20px; /* Round the button corners for a soft look */
+      cursor: pointer; /* Change cursor to pointer when hovering */
+
+      transition: 0.3s; /* Smooth transition effect for hover */
     }
+
+    /* What happens when you hover over the button */
     .start-btn:hover {
-      background: #FFB6C1; /* đậm hơn một chút khi hover */
+      background: #FFB6C1; /* Slightly darker pink when hovering */
     }
+
+    /* Style for the small image logo in the corner */
     .logo {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 50px;
-      height: 50px;
+      position: absolute; /* Position the image inside the box */
+      bottom: 10px; /* 10px from the bottom of the container */
+      right: 10px; /* 10px from the right side */
+      width: 50px; /* Set the logo width */
+      height: 50px; /* Set the logo height */
     }
   </style>
 </head>

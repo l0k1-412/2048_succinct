@@ -6,78 +6,101 @@
   <title>2048 Game Over</title>
   <link href="https://fonts.googleapis.com/css?family=Nunito:800" rel="stylesheet">
   <style>
+    /* Style for the entire page */
     body {
-      font-family: 'Nunito', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+      font-family: 'Nunito', sans-serif; /* Use Nunito font from Google Fonts */
+      display: flex; /* Use flexbox layout */
+      justify-content: center; /* Center content horizontally */
+      align-items: center; /* Center content vertically */
+      height: 100vh; /* Full height of the screen */
+      margin: 0; /* Remove default margin */
+  
+      /* Background gradient: from dark pink (#8C016C) to bright pink (#FE11C5) */
       background: linear-gradient(135deg, #8C016C, #FE11C5);
     }
+  
+    /* Container for the game over screen */
     .game-over-container {
+      /* Background gradient from light pink to white to light blue */
       background: linear-gradient(135deg, #FFC0CB, #FFFFFF, #ADD8E6);
-      color: #222;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      width: 320px;
-      height: 320px;
-      max-width: 90%;
-      border: 2px solid #FF1493;
-      text-align: center;
+      color: #222; /* Dark gray text */
+      padding: 20px; /* Space inside the box */
+      border-radius: 15px; /* Rounded corners for a soft look */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Drop shadow for 3D effect */
+  
+      width: 320px; /* Fixed width */
+      height: 320px; /* Fixed height */
+      max-width: 90%; /* Responsive design: shrink on small screens */
+      border: 2px solid #FF1493; /* Deep pink border */
+      text-align: center; /* Center all text inside */
+  
+      /* Flexbox layout to center everything vertically and horizontally */
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column; /* Stack elements vertically */
+      justify-content: center; /* Center vertically */
+      align-items: center; /* Center horizontally */
     }
+  
+    /* Header section (logo and title side by side) */
     .header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
+      display: flex; /* Flex layout */
+      align-items: center; /* Center items vertically */
+      justify-content: center; /* Center entire group horizontally */
+      width: 100%; /* Take full width of container */
     }
+  
+    /* Logo image style */
     .logo {
-      width: 80px;
+      width: 80px; /* Logo size */
       height: 80px;
-      border: 2px solid #FF1493;
-      border-radius: 8px;
-      padding: 5px;
-      margin-right: 10px;
+      border: 2px solid #FF1493; /* Deep pink border around the image */
+      border-radius: 8px; /* Slightly rounded corners */
+      padding: 5px; /* Space between image and border */
+      margin-right: 10px; /* Space between logo and title */
     }
+  
+    /* Main title text next to the logo */
     .title {
-      font-size: 2em;
-      font-weight: 800;
-      text-align: left;
+      font-size: 2em; /* Large text */
+      font-weight: 800; /* Extra bold */
+      text-align: left; /* Align text to the left */
     }
+  
+    /* Subtitle text below the title (e.g., "Game Over") */
     .subtitle {
-      font-size: 1.1em;
-      font-weight: 800;
-      margin-top: 10px;
+      font-size: 1.1em; /* Slightly larger than normal */
+      font-weight: 800; /* Bold */
+      margin-top: 10px; /* Space above this text */
     }
+  
+    /* Final score display */
     .score {
-      font-size: 1.2em;
-      font-weight: 800;
-      margin-top: 5px;
+      font-size: 1.2em; /* Slightly larger text */
+      font-weight: 800; /* Bold */
+      margin-top: 5px; /* Small space above score */
     }
+  
+    /* Restart button style */
     .restart-btn {
-      background: #FF69B4;
-      color: white;
-      font-size: 1.2em;
-      font-weight: bold;
-      padding: 15px 20px;
-      border: none;
-      border-radius: 15px;
-      cursor: pointer;
-      margin-top: 15px;
-      transition: background 0.3s;
-      width: 85%;
-      text-align: center;
+      background: #FF69B4; /* Hot pink background */
+      color: white; /* White text for contrast */
+      font-size: 1.2em; /* Medium-large text */
+      font-weight: bold; /* Bold text */
+      padding: 15px 20px; /* Space inside the button */
+      border: none; /* Remove default borders */
+      border-radius: 15px; /* Rounded corners */
+      cursor: pointer; /* Pointer cursor on hover */
+      margin-top: 15px; /* Space above the button */
+      transition: background 0.3s; /* Smooth color change when hovering */
+      width: 85%; /* Make button take most of the container's width */
+      text-align: center; /* Center text inside the button */
     }
+  
+    /* Change button color when hovered over */
     .restart-btn:hover {
-      background: #FF1493;
+      background: #FF1493; /* Darker pink on hover */
     }
-  </style>
+  </style>  
 </head>
 <body>
   <div class="game-over-container">
